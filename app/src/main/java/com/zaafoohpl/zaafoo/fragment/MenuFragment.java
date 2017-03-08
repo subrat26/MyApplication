@@ -173,11 +173,6 @@ public class MenuFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 myMenu=(Menu)parent.getItemAtPosition(position);
-                /*new SessionManagement(getActivity()).insertMenuObject(myMenu);
-                FragmentTransaction transaction=getActivity().getFragmentManager().beginTransaction();
-                transaction.replace(R.id.content_home_drawar, new MenuDetailsFragment()).commit();
-
-*/
                 showAddToCartDialog();
             }
         });
@@ -254,15 +249,32 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                new SessionManagement(getActivity()).addCartItems(myMenu);
-                Snacky.builder()
-                        .setActivty(getActivity())
-                        .setText("Item Added To Cart")
-                        .centerText()
-                        .setDuration(Snacky.LENGTH_SHORT)
-                        .success()
-                        .show();
+                boolean present=false;
+                ArrayList<Menu> xyz=new SessionManagement(getActivity()).loadCartItems();
+                for(Menu m:xyz){
+                    if(m.getId().equalsIgnoreCase(myMenu.getId()))
+                        present=true;
+                }
 
+                if(present){
+                    Snacky.builder()
+                            .setActivty(getActivity())
+                            .setText("Item Already Present In Cart")
+                            .centerText()
+                            .setDuration(Snacky.LENGTH_SHORT)
+                            .error()
+                            .show();
+                }
+                else{
+                    new SessionManagement(getActivity()).addCartItems(myMenu);
+                    Snacky.builder()
+                            .setActivty(getActivity())
+                            .setText("Item Added To Cart")
+                            .centerText()
+                            .setDuration(Snacky.LENGTH_SHORT)
+                            .success()
+                            .show();
+                }
 
 
 
