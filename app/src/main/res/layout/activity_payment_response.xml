@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_payment_response"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@drawable/bckground"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.zaafoohpl.zaafoo.myapplication.PaymentResponse">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="39dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView30"
+                android:layout_alignLeft="@+id/textView29"
+                android:layout_alignStart="@+id/textView29"
+                android:id="@+id/textView31" />
+
+            <TextView
+                android:text="Amount:"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView28"
+                android:layout_alignLeft="@+id/textView28"
+                android:layout_alignStart="@+id/textView28"
+                android:layout_marginTop="19dp"
+                android:id="@+id/textView30" />
+
+            <TextView
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView29"
+                android:layout_alignBaseline="@+id/textView28"
+                android:layout_alignBottom="@+id/textView28"
+                android:layout_alignRight="@+id/textView4"
+                android:layout_alignEnd="@+id/textView4"
+                android:layout_marginRight="50dp"
+                android:layout_marginEnd="50dp" />
+
+            <TextView
+                android:text="Payment Id:"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:id="@+id/textView28"
+                android:layout_below="@+id/textView4"
+                android:layout_toLeftOf="@+id/imageView8"
+                android:layout_toStartOf="@+id/imageView8" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/success"
+                android:id="@+id/imageView8"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:text="Payment Successful"
+                android:textColor="@color/colorAccent"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView4"
+                android:layout_below="@+id/imageView8"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

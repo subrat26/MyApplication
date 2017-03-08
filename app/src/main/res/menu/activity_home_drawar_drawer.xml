@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_edit_profile"
+            android:icon="@drawable/user"
+            android:title="Edit Profile"
+             />
+        <item
+            android:id="@+id/nav_pre_order"
+            android:icon="@drawable/food"
+            android:title="Pre Order Food" />
+
+        <item
+            android:id="@+id/nav_past_booking"
+            android:icon="@drawable/booking"
+            android:title="Past Bookings" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout"
+                android:title="Logout" />
+
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:icon="@drawable/privacy"
+                android:title="Privacy Policy" />
+        </menu>
+    </item>
+
+</menu>
