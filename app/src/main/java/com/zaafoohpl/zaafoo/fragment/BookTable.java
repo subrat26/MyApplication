@@ -165,7 +165,7 @@ public class BookTable extends Fragment {
                                     else
                                         canvas.drawRect(rect, bluepaint);
                                 }
-                                canvas.drawText(String.valueOf(t.getNoOfPerson()), (int)t.getX() * 500.0f, (int)t.getY() * 500.0f, whitepaint);
+                                canvas.drawText(String.valueOf(t.getNoOfPerson()),(int)(t.getX()*convertPixelsToDp()),(int)(t.getY()*convertPixelsToDp()),whitepaint);
                                 if(leftPersons<0)
                                     leftPersons=0;
                             }
@@ -243,7 +243,7 @@ public class BookTable extends Fragment {
             canvas = new Canvas(bg);
             //drawFloorPlan(canvas);
             //canvas.translate(80,80);
-
+            drawFloorText(canvas);
 
             for(Table t:tableList){
 
@@ -346,6 +346,25 @@ public class BookTable extends Fragment {
         float dp=metrics.densityDpi;
         Log.e("dp",dp+"");
         return  (dp/2.3);
+    }
+
+
+    // Draw Floor Text
+    public void drawFloorText(Canvas c){
+
+        ArrayList<FloorText> floor=Paper.book().read("floorText",new ArrayList<FloorText>());
+        if(!floor.isEmpty()){
+            float x,y;
+            for(FloorText f:floor){
+                c.save();
+                x=Float.parseFloat(f.getX());
+                y=Float.parseFloat(f.getY());
+                c.rotate(45, x, y);
+                c.drawText(f.getText(),x,y,blackpaint);
+                c.restore();
+            }
+
+        }
     }
 }
 

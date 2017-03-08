@@ -15,6 +15,24 @@ public class Past {
     String foodTotal;
     String tax;
     String booking_id;
+    boolean customer_left;
+    boolean customer_arrived;
+
+    public boolean isCustomer_arrived() {
+        return customer_arrived;
+    }
+
+    public void setCustomer_arrived(boolean customer_arrived) {
+        this.customer_arrived = customer_arrived;
+    }
+
+    public boolean isCustomer_left() {
+        return customer_left;
+    }
+
+    public void setCustomer_left(boolean customer_left) {
+        this.customer_left = customer_left;
+    }
 
     public String getAdvance() {
         return advance;

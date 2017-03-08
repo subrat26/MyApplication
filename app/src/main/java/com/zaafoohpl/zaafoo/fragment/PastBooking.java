@@ -75,14 +75,18 @@ public class PastBooking extends Fragment {
                             for(int i=0;i<array.length();i++){
                                 JSONObject obj=array.getJSONObject(i);
                                 String restid=obj.getString("restaurant");
-                                String restname=getRestaurantName(restid);
+                                String restname=obj.getString("restaurant_name");
                                 String total=obj.getString("total");
                                 String advance=obj.getString("advance");
+                                boolean customer_arrived=Boolean.parseBoolean(obj.getString("customer_arrived"));
+                                boolean customer_left=Boolean.parseBoolean(obj.getString("customer_left"));
                                 Past p=new Past();
                                 p.setRestid(restid);
                                 p.setRestname(restname);
                                 p.setTotal(total);
                                 p.setAdvance(advance);
+                                p.setCustomer_arrived(customer_arrived);
+                                p.setCustomer_left(customer_left);
                                 bookings.add(p);
                             }
                             RecyclerView.Adapter adapter = new PastBookingAdapter(bookings,getActivity());
@@ -106,32 +110,6 @@ public class PastBooking extends Fragment {
 
     }
 
-    private String getRestaurantName(String restid) {
 
-        AndroidNetworking.post("http://zaafoo.in/cusresview/")
-                .addBodyParameter("restid", restid)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray menu_array=response.getJSONArray("menus");
-                            JSONObject obj=menu_array.getJSONObject(0);
-                            restaurant_name=obj.getString("restaurant");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        // handle error
-                        Log.e("error",error.getErrorDetail());
-                    }
-                });
-
-        return "Lal Qila";
-    }
 
 }

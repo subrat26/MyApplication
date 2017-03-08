@@ -45,6 +45,7 @@ public class RestAdapter extends RecyclerView.Adapter<RestAdapter.ViewHolder> {
     View myView;
     ProgressDialog pd;
     ArrayList<String> bookedTableNos;
+    ArrayList<FloorText> myFloorText;
 
 
     public RestAdapter(ArrayList<Rest> restaurantList,Context con) {
@@ -54,6 +55,7 @@ public class RestAdapter extends RecyclerView.Adapter<RestAdapter.ViewHolder> {
         user= Paper.book().read("user",new ZaafooUser());
         tableList=new ArrayList<>();
         bookedTableNos=new ArrayList<>();
+        myFloorText=new ArrayList<>();
     }
 
     @Override
@@ -133,16 +135,22 @@ public class RestAdapter extends RecyclerView.Adapter<RestAdapter.ViewHolder> {
                     @Override
                     public void onResponse(JSONObject response) {
                         Table table;
+                        FloorText floor;
                         JSONArray table_array;
                         JSONObject table_object;
                         String floorPlan;
+                        JSONArray floorText;
+                        JSONObject floorObject;
 
                         try {
                             floorPlan=response.getString("flp");
+                            floorText=response.getJSONArray("floortext");
+                            Log.e("floorText",floorText.toString());
                             Paper.book().write("floorPlan",floorPlan);
                             table_array=response.getJSONArray("tabls");
                             Log.e("table layout",table_array.toString());
 
+                            // Table Layout Loop
                             for(int i=0;i<table_array.length();i++){
                                 table=new Table();
                                 table_object=table_array.getJSONObject(i);
@@ -162,8 +170,25 @@ public class RestAdapter extends RecyclerView.Adapter<RestAdapter.ViewHolder> {
                                 tableList.add(table);
                             }
 
-                            Paper.book().write("tableList",tableList);
+                            // FLoor Text Loop
+                            for(int j=0;j<floorText.length();j++){
+                                floor=new FloorText();
+                                floorObject=floorText.getJSONObject(j);
+                                String x=floorObject.getString("x");
+                                String y=floorObject.getString("y");
+                                String text=floorObject.getString("txt");
+                                String angle=floorObject.getString("degree");
+                                floor.setX(x);
+                                floor.setY(y);
+                                floor.setText(text);
+                                floor.setAngle(angle);
 
+                                myFloorText.add(floor);
+
+                            }
+
+                            Paper.book().write("tableList",tableList);
+                            Paper.book().write("floorText",myFloorText);
 
                         } catch (JSONException e) {
                             Log.e("Networking Error",e.getMessage());

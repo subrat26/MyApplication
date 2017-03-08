@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.androidnetworking.AndroidNetworking;
+
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        AndroidNetworking.initialize(this);
         sm = new SessionManagement(this);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         TextView name = (TextView) findViewById(R.id.textView5);
@@ -36,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         else
             startActivity(new Intent(SplashActivity.this,MainActivity.class));
 
+        startService(new Intent(this,BookingService.class));
         finish();
 
     }

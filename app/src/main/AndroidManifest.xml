@@ -15,9 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:theme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".GetLocation"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GetLocation"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -40,10 +44,11 @@
         <activity
             android:name=".HomeDrawar"
             android:label="@string/title_activity_home_drawar"
-            android:theme="@style/CustomTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".FeedbackActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme.NoActionBar" />
+        <activity
+            android:name=".FeedbackActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true"
@@ -57,7 +62,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".FinalActivity"
+        <activity
+            android:name=".FinalActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <data
@@ -70,8 +76,14 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        <activity android:name=".PaymentResponse"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PaymentResponse"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".BookingService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
