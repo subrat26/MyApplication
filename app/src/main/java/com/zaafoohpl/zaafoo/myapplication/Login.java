@@ -105,11 +105,11 @@ public class Login extends AppCompatActivity {
         loginButton.setReadPermissions(fbPermissions);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
-
             @Override
             public void onSuccess(LoginResult loginResult) {
                 tracker.startTracking();
                 AccessToken accessToken=loginResult.getAccessToken();
+                Log.e("token",accessToken.getToken());
                 getZaafooToken(accessToken.getToken());
             }
 
@@ -150,7 +150,7 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(Login.this,GetLocation.class));
                             finish();
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                           Log.e("json fb",e.getMessage());
                         }
 
                     }

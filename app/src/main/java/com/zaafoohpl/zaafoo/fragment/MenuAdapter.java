@@ -42,21 +42,12 @@ public class MenuAdapter extends ArrayAdapter<Menu> {
 
         TextView menu_name=(TextView)convertView.findViewById(R.id.textView);
         TextView price=(TextView)convertView.findViewById(R.id.textView8);
-       /* TextView cuisine=(TextView)convertView.findViewById(R.id.textView17);
-        TextView time=(TextView)convertView.findViewById(R.id.textView18);
-        TextView description=(TextView)convertView.findViewById(R.id.textView19);*/
 
         Typeface face= Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Medium.ttf");
         menu_name.setTypeface(face);
         menu_name.setText(m.getName());
         price.setTypeface(face);
         price.setText("Rs."+m.getPrice());
-/*
-        cuisine.setText(m.getCuisine());
-        time.setText(m.getFood_timing());
-        description.setText(m.getDesc());
-*/
-
 
         return convertView;
     }

@@ -80,11 +80,11 @@
         "source": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\btn_radio_off_pressed_holo_light.png"
     },
     {
-        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\header_logo.png",
-        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\header_logo.png"
-    },
-    {
         "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\list_pressed_holo_light.9.png",
         "source": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\header_logo.png",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\MyApplication\\EBS\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\header_logo.png"
     }
 ]

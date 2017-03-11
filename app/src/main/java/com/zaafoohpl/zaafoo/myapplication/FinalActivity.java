@@ -3,6 +3,7 @@ package com.zaafoohpl.zaafoo.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +51,8 @@ public class FinalActivity extends AppCompatActivity {
     ProgressDialog pd;
     ArrayList<HashMap<String, String>> custom_post_parameters;
     private JSONObject book_object;
+    int trials=0;
+    double finalTotalAmount;
 
 
     @Override
@@ -77,13 +80,13 @@ public class FinalActivity extends AppCompatActivity {
         transaction=(TextView)findViewById(R.id.transaction_amount);
         total=(TextView)findViewById(R.id.total_amount);
         payNow=(Button)findViewById(R.id.button11);
-        final double finalTotalAmount=getBookingData();
+
 
         payNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(reference_No!=null){
-                    goForPayment(user.getName(),"subrat.pani@zaafoo.co.in",String.valueOf(finalTotalAmount),reference_No);
+                    goForPayment(user.getName(),user.getEmail(),String.valueOf(finalTotalAmount),reference_No);
                     Paper.book().write("bookingObject",book_object);
                 }
             }
@@ -157,13 +160,17 @@ public class FinalActivity extends AppCompatActivity {
     }
 
     // Get  Reference ID from server
-    private void getBookingIdFromServer(JSONObject booking_object) {
+    private void getBookingIdFromServer(final JSONObject booking_object) {
 
-        final ProgressDialog pd=new ProgressDialog(this);
-        pd.setCancelable(false);
-        pd.setTitle("Zaafoo");
-        pd.setMessage("Loading...");
-        pd.show();
+        if(pd==null) {
+            pd = new ProgressDialog(this);
+            pd.setCancelable(false);
+            pd.setTitle("Zaafoo");
+            pd.setMessage("Loading...");
+            if (!(pd.isShowing()))
+                pd.show();
+        }
+
         AndroidNetworking.post("http://zaafoo.in/resbookview/")
                 .addJSONObjectBody(booking_object)
                 .addHeaders("Authorization","Token "+user.getToken())
@@ -177,25 +184,27 @@ public class FinalActivity extends AppCompatActivity {
                         // do anything with response
                         try {
                             reference_No=response.getString("BookingID");
-
                         } catch (JSONException e) {
                             e.printStackTrace();
-
                         }
+                        if(pd!=null&&pd.isShowing())
                         pd.dismiss();
                     }
                     @Override
                     public void onError(ANError error) {
                         // handle error
-                        pd.dismiss();
-                        Intent intent = new Intent(FinalActivity.this, HomeDrawar.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        Toast.makeText(FinalActivity.this,"Seems Like Internet is too Slow.Try Later",Toast.LENGTH_SHORT).show();
+                        if(pd!=null&&pd.isShowing())
+                            pd.dismiss();
 
+                            Paper.book().write("cart_items",new ArrayList<Menu>());
+                            Intent intent = new Intent(FinalActivity.this, HomeDrawar.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            Toast.makeText(FinalActivity.this, "Seems Like Internet is too Slow.Try Later", Toast.LENGTH_SHORT).show();
                     }
                 });
-        pd.dismiss();
+
+
     }
 
     public JSONObject createJsonObject(ArrayList<String> bookedTableId,int noOfTables,ArrayList<Menu> mymenu,String token,String restid,String perRequest,String date){
@@ -303,4 +312,10 @@ public class FinalActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        finalTotalAmount=getBookingData();
+
+    }
 }

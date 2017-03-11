@@ -12,14 +12,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zaafoohpl.zaafoo.myapplication.GetLocation">
 
+    <TextView
+        android:text="You are at"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="83dp"
+        android:id="@+id/textView32"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="10dp"
         app:cardUseCompatPadding="true"
-        android:layout_marginTop="74dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/textView32"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 

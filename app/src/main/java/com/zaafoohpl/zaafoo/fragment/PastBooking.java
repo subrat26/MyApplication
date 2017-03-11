@@ -105,9 +105,6 @@ public class PastBooking extends Fragment {
                     }
                 });
 
-
-
-
     }
 
 

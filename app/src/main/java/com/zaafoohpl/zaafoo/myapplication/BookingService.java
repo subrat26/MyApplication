@@ -34,7 +34,7 @@ public class BookingService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("Service","started");
+        checkForCustomerArrivalAndLeftStatus();
         return super.onStartCommand(intent, flags, startId);
     }
 

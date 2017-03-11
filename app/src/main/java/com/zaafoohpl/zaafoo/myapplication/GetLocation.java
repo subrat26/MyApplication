@@ -44,6 +44,7 @@ public class GetLocation extends AppCompatActivity {
     ZaafooUser user;
     ArrayList<String> localityName;
     ArrayList<String> localityId;
+    TextView currentLocation;
     int x,y;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,23 +52,27 @@ public class GetLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_location);
         setTitle("Location");
+        Paper.init(this);
         Typeface face= Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         TextView tv=(TextView)findViewById(R.id.textView3);
         TextView tv1=(TextView)findViewById(R.id.textView33);
+        currentLocation=(TextView)findViewById(R.id.textView32);
         tv.setTypeface(face);
         tv1.setTypeface(face);
+        currentLocation.setTypeface(face);
+        String gpsLocation=Paper.book().read("gpsLocation","xyz");
+        getUserEmail();
+        if(gpsLocation.equalsIgnoreCase("xyz")){
+            currentLocation.setText("Unable To Trace User Location");
+        }
+        else{
+            currentLocation.setText("You are at "+gpsLocation);
+        }
 
         localityName=new ArrayList<>();
         localityId=new ArrayList<>();
-        Paper.init(this);
-        cities=new HashMap<>();
-        cities.put("1","Bhubaneswar");
-        cities.put("2","Rourkela");
-        cities.put("3","Cuttack");
-        cities.put("4","Behrampur");
-        cities.put("5","Balasore");
-        cities.put("6","Puri");
 
+        cities=Paper.book().read("cities",new HashMap<String, String>());
 
         s1=(Spinner)findViewById(R.id.spinner);
         city=new ArrayList<>();
@@ -124,6 +129,34 @@ public class GetLocation extends AppCompatActivity {
         });
 
     }
+
+    // Get User Email
+    private void getUserEmail() {
+
+       user=Paper.book().read("user",new ZaafooUser());
+        AndroidNetworking.post("http://zaafoo.in/useremailview/")
+                .addHeaders("Authorization","Token "+user.getToken())
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String email=response.getString("email");
+                            user.setEmail(email);
+                            Paper.book().write("user",user);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                    }
+                });
+
+
+    }
+
 
     private void getLocality(String key) {
 
@@ -188,6 +221,7 @@ public class GetLocation extends AppCompatActivity {
         });
 
     }
+
 
 
 }

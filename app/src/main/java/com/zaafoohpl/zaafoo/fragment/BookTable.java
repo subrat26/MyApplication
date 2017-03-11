@@ -110,7 +110,7 @@ public class BookTable extends Fragment {
                     int x=(int)(event.getX());
                     //x-=40;
                     int y=(int)(event.getY());
-                    y+=20;
+                    //y+=20;
 
                     Log.e("touch",x+"   "+y);
 
@@ -237,6 +237,8 @@ public class BookTable extends Fragment {
         int left,right,top,bottom;
         Rect rectangle;
 
+        int dp=(int)convertPixelsToDp();
+        int squareSide=dp/3;
         if(!tableList.isEmpty()){
 
             bg = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
@@ -249,10 +251,10 @@ public class BookTable extends Fragment {
 
                 x=t.getX();
                 y=t.getY();
-                left=(int)(x*convertPixelsToDp()  - 70);
-                right = (int)(x*convertPixelsToDp() + 70);
-                top = (int)(y*convertPixelsToDp() - 70);
-                bottom =(int)(y*convertPixelsToDp()+ 70);
+                left=(int)(x*convertPixelsToDp()  - squareSide);
+                right = (int)(x*convertPixelsToDp() + squareSide);
+                top = (int)(y*convertPixelsToDp() - squareSide);
+                bottom =(int)(y*convertPixelsToDp()+ squareSide);
 
                 rectangle=new Rect(left,top,right,bottom);
                 t.setR(rectangle);
@@ -292,6 +294,7 @@ public class BookTable extends Fragment {
         blackpaint = new Paint();
         blackpaint.setColor(Color.parseColor("#000000"));
         blackpaint.setStrokeWidth(2);
+        blackpaint.setTextSize(30);
 
         whitepaint = new Paint();
         whitepaint.setColor(Color.parseColor("#FFFFFF"));
@@ -359,7 +362,7 @@ public class BookTable extends Fragment {
                 c.save();
                 x=Float.parseFloat(f.getX());
                 y=Float.parseFloat(f.getY());
-                c.rotate(45, x, y);
+                c.rotate(270, x, y);
                 c.drawText(f.getText(),x,y,blackpaint);
                 c.restore();
             }
