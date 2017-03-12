@@ -4,13 +4,12 @@ package com.zaafoohpl.zaafoo.fragment;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Menu implements Parcelable {
+public class Menu  {
 
     String id;
     String name;
     String restaurant_name;
     String price;
-    String cuisine;
     String food_timing;
     String desc;
     String menu_type;
@@ -25,51 +24,6 @@ public class Menu implements Parcelable {
     public Menu(){
 
     }
-
-    protected Menu(Parcel in) {
-        id = in.readString();
-        name = in.readString();
-        restaurant_name = in.readString();
-        price = in.readString();
-        cuisine = in.readString();
-        food_timing = in.readString();
-        desc = in.readString();
-        menu_type = in.readString();
-        amount = in.readString();
-    }
-
-    public static final Creator<Menu> CREATOR = new Creator<Menu>() {
-        @Override
-        public Menu createFromParcel(Parcel in) {
-            return new Menu(in);
-        }
-
-        @Override
-        public Menu[] newArray(int size) {
-            return new Menu[size];
-        }
-    };
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(restaurant_name);
-        dest.writeString(price);
-        dest.writeString(cuisine);
-        dest.writeString(food_timing);
-        dest.writeString(desc);
-        dest.writeString(menu_type);
-        dest.writeString(amount);
-    }
-
-
 
 
     public String getAmount() {
@@ -118,14 +72,6 @@ public class Menu implements Parcelable {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getCuisine() {
-        return cuisine;
-    }
-
-    public void setCuisine(String cuisine) {
-        this.cuisine = cuisine;
     }
 
     public String getFood_timing() {

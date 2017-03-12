@@ -192,7 +192,7 @@ public class BookTable extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    getFragmentManager().beginTransaction().replace(R.id.content_home_drawar,new MenuFragment()).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.content_home_drawar,new MenuNewFragment()).commit();
                     Paper.book().write("tableList",tableList);
                     new SessionManagement(getActivity()).insertTableList(tableList);
             }

@@ -148,6 +148,7 @@ public class SplashActivity extends LocationBaseActivity {
                 .setDuration(Snacky.LENGTH_SHORT)
                 .error()
                 .show();
+        Paper.book().write("gpsLocation","xyz");
 
     }
 

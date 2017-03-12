@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 import com.zaafoohpl.zaafoo.fragment.CartFragment;
 import com.zaafoohpl.zaafoo.fragment.EditProfileFragment;
 import com.zaafoohpl.zaafoo.fragment.MainFragment;
+import com.zaafoohpl.zaafoo.fragment.MenuNewFragment;
 import com.zaafoohpl.zaafoo.fragment.PastBooking;
 import com.zaafoohpl.zaafoo.fragment.PreorderFood;
 import com.roger.catloadinglibrary.CatLoadingView;
@@ -137,14 +138,11 @@ public class HomeDrawar extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_edit_profile) {
-            //ft.addToBackStack("editProfile");
             ft.replace(R.id.content_home_drawar,new EditProfileFragment()).commit();
         } else if (id == R.id.nav_pre_order) {
-           // ft.addToBackStack("preOrderFood");
             ft.replace(R.id.content_home_drawar, new MainFragment()).commit();
         }
         else if (id == R.id.nav_past_booking) {
-            // ft.addToBackStack("cart");
             ft.replace(R.id.content_home_drawar,new PastBooking()).commit();
         }
         else if(id==R.id.nav_logout)
@@ -164,7 +162,5 @@ public class HomeDrawar extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 
 }

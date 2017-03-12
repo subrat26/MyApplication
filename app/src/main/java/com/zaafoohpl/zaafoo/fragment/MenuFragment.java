@@ -133,7 +133,6 @@ public class MenuFragment extends Fragment {
                                                  menuPrice = objrest.getString("price");
                                                  menuType=objrest.getString("Veg");
                                                  id = objrest.getString("id");
-                                                 menuCuisine= objrest.getString("cuisine");
                                                  menuTime = objrest.getString("food_timings");
                                                  menuDesc=objrest.getString("description");
 
@@ -144,7 +143,6 @@ public class MenuFragment extends Fragment {
                                                  m.setId(id);
                                                  m.setFood_timing(menuTime);
                                                  m.setDesc(menuDesc);
-                                                 m.setCuisine(menuCuisine);
 
                                                  menu_list.add(m);
                                              }

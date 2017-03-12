@@ -62,12 +62,7 @@ public class GetLocation extends AppCompatActivity {
         currentLocation.setTypeface(face);
         String gpsLocation=Paper.book().read("gpsLocation","xyz");
         getUserEmail();
-        if(gpsLocation.equalsIgnoreCase("xyz")){
-            currentLocation.setText("Unable To Trace User Location");
-        }
-        else{
-            currentLocation.setText("You are at "+gpsLocation);
-        }
+
 
         localityName=new ArrayList<>();
         localityId=new ArrayList<>();
@@ -118,8 +113,6 @@ public class GetLocation extends AppCompatActivity {
                     }
                 }
 
-
-
             }
 
             @Override
@@ -127,6 +120,21 @@ public class GetLocation extends AppCompatActivity {
 
             }
         });
+
+        if(gpsLocation.equalsIgnoreCase("xyz")){
+            currentLocation.setText("Unable To Trace Current Location");
+
+        }
+        else{
+            int i=0;
+            for(String key:city){
+                if(key.equalsIgnoreCase(gpsLocation))
+                    s1.setSelection(i,true);
+                i++;
+            }
+            currentLocation.setText("You are at "+gpsLocation);
+        }
+
 
     }
 

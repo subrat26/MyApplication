@@ -17,10 +17,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.zaafoohpl.zaafoo.fragment.Menu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import io.paperdb.Paper;
@@ -37,7 +39,7 @@ public class PaymentResponse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_response);
-
+        Paper.init(this);
         Typeface face= Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
 
         payment_id=(TextView)findViewById(R.id.textView29);
@@ -79,6 +81,7 @@ public class PaymentResponse extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(PaymentResponse.this, GetLocation.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Paper.book().write("cart_items",new ArrayList<Menu>());
                 startActivity(intent);
             }
         }, 5000);
